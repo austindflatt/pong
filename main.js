@@ -29,8 +29,8 @@ let playerPaddleYVelocity = 5;
 // The ball position
 let ballXPosition = 350;
 let ballYPosition = 250;
-let ballXVelocity = Math.random() * 10;
-let ballYVelocity = Math.random() * 10;
+let ballXVelocity = 5;
+let ballYVelocity = 0;
 
 // Update the pong world
 function update() {
@@ -43,14 +43,33 @@ function update() {
 
     // Apply the y-position 
     computerPaddle.style.top = `${computerPaddleYPosition}px`;
-    playerPaddle.style.top = `${playerPaddleYPosition}px`;
     if (computerPaddleYPosition <= 0 || computerPaddleYPosition >= 400) {
         computerPaddleYVelocity = computerPaddleYPosition + computerPaddleYVelocity * -1;
     }
 
+    playerPaddle.style.top = `${playerPaddleYPosition}px`;
+    if (playerPaddleYPosition <= 0 || playerPaddleYPosition >= 600) {
+        playerPaddleYVelocity = playerPaddleYPosition + playerPaddleYVelocity * -1;
+    }
+
     ballXPosition = ballXPosition + ballXVelocity;
     ballYPosition = ballYPosition + ballYVelocity;
-    ball.style.left = `${ballXPosition}px`;
+    ball.style.top = ballYPosition + "px";
+    ball.style.left = ballXPosition + "px";
+
+    if (ballXPosition > 690) {
+        ballXPosition = 350;
+        ballYPosition = 250;
+        ballYVelocity = ballYVelocity + 3;
+    }
+    if (ballXPosition > 490) {
+        ballXPosition = 350;
+        ballYPosition = 250;
+        ballYVelocity = ballYVelocity + 3;
+    }
+
+/*     // Update the ball's velocity
+    ballYVelocity = ballYVelocity - 0.05; */
 }
 
 // Call the update() function every 35ms
