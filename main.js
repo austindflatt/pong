@@ -44,32 +44,26 @@ function update() {
     // Apply the y-position 
     computerPaddle.style.top = `${computerPaddleYPosition}px`;
     if (computerPaddleYPosition <= 0 || computerPaddleYPosition >= 400) {
-        computerPaddleYVelocity = computerPaddleYPosition + computerPaddleYVelocity * -1;
+        computerPaddleYVelocity = computerPaddleYVelocity * -1;
     }
 
     playerPaddle.style.top = `${playerPaddleYPosition}px`;
-    if (playerPaddleYPosition <= 0 || playerPaddleYPosition >= 600) {
-        playerPaddleYVelocity = playerPaddleYPosition + playerPaddleYVelocity * -1;
+    if (playerPaddleYPosition <= 0 || playerPaddleYPosition >= 400) {
+        playerPaddleYVelocity = playerPaddleYVelocity * -1;
     }
 
     ballXPosition = ballXPosition + ballXVelocity;
     ballYPosition = ballYPosition + ballYVelocity;
     ball.style.top = ballYPosition + "px";
     ball.style.left = ballXPosition + "px";
+    ballYVelocity = ballYVelocity - 0.05;
 
-    if (ballXPosition > 690) {
-        ballXPosition = 350;
-        ballYPosition = 250;
-        ballYVelocity = ballYVelocity + 3;
+    if (ballXPosition > 680) {
+        ballXVelocity = ballXVelocity * -1;
     }
-    if (ballXPosition > 490) {
-        ballXPosition = 350;
-        ballYPosition = 250;
-        ballYVelocity = ballYVelocity + 3;
+    if (ballYPosition < 1) {
+        ballYVelocity = ballYVelocity * -1;
     }
-
-/*     // Update the ball's velocity
-    ballYVelocity = ballYVelocity - 0.05; */
 }
 
 // Call the update() function every 35ms
